@@ -107,6 +107,7 @@ Rails.application.routes.draw do
     get :download_profile
     post :export_photos
     get :download_photos
+    post :auth_token
   end
 
   controller :users do
