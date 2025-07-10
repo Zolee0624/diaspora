@@ -61,6 +61,10 @@ describe ArchiveImporter do
                 "author" => "old_id@old_pod.nowhere"
               }
             },
+            "contact_groups"          => [{
+              "chat_enabled" => true,
+              "name"         => "Friends"
+            }],
             "followed_tags"      => [target.tag_followings.first.tag.name],
             "post_subscriptions" => [target.participations.first.target.guid]
           }
