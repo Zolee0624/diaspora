@@ -28,7 +28,15 @@ SecureHeaders::Configuration.default do |config|
     csp[:script_src] << asset_host
     csp[:style_src] << asset_host
   end
+  
+  if AppConfig.chat.enabled?
+    csp[:media_src] << "data:"
 
+    unless AppConfig.chat.server.bosh.proxy?
+      csp[:connect_src] << "#{AppConfig.pod_uri.host}:#{AppConfig.chat.server.bosh.port}"
+    end
+  end
+  
   csp[:script_src] << "code.jquery.com" if AppConfig.privacy.jquery_cdn?
   csp[:form_action] << "www.paypal.com" if AppConfig.settings.paypal_donations.enable?
 
