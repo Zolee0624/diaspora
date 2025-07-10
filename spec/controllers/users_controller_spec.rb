@@ -304,8 +304,15 @@ describe UsersController, :type => :controller do
       get :edit, params: {id: @user.id}
       expect(assigns[:email_prefs]['mentioned']).to be false
     end
+    
+    it "does not allow token auth" do
+      sign_out :user
+      bob.reset_authentication_token!
+      get :edit, params: {auth_token: bob.authentication_token}
+      expect(response).to redirect_to new_user_session_path
+    end
   end
-
+  
   describe '#destroy' do
     it 'does nothing if the password does not match' do
       expect(Workers::DeleteAccount).not_to receive(:perform_async)
