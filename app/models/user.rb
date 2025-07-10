@@ -7,6 +7,7 @@
 require "attr_encrypted"
 
 class User < ApplicationRecord
+  include AuthenticationToken
   include Connecting
   include Querying
   include SocialActions
