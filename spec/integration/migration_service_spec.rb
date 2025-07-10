@@ -148,7 +148,8 @@ describe MigrationService do
           }
         ],
         "contact_groups": [
-          {"name":"Friends"}
+          {"name":"Friends","chat_enabled":true},
+          {"name":"Friends","chat_enabled":false}
         ],
         "post_subscriptions": [
           "#{unknown_subscription_guid}",
