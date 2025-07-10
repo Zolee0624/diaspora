@@ -110,6 +110,10 @@ class UsersController < ApplicationController
     redirect_to edit_user_path
   end
 
+  def reset_authentication_token
+    current_user&.reset_authentication_token!
+  end
+  
   private
 
   def user_params
