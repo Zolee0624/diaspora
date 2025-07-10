@@ -91,7 +91,6 @@ os=$(uname -s)
 vars=$(bin/bundle exec ruby ./script/get_config.rb \
   workers=server.sidekiq_workers \
   chat=chat.enabled \
-  chat_bosh_proxy=chat.server.bosh.proxy \
   redis_url=environment.redis \
   | grep -vE "is not writable|as your home directory temporarily"
 )
