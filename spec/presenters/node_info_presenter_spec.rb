@@ -39,6 +39,7 @@ describe NodeInfoPresenter do
         },
         "metadata"          => {
           "nodeName" => AppConfig.settings.pod_name,
+          "xmppChat" => AppConfig.chat.enabled?,
           "camo"     => {
             "markdown"   => AppConfig.privacy.camo.proxy_markdown_images?,
             "opengraph"  => AppConfig.privacy.camo.proxy_opengraph_thumbnails?,
@@ -117,6 +118,18 @@ describe NodeInfoPresenter do
       end
     end
 
+    context "when chat is enabled" do
+      before do
+        AppConfig.chat.enabled = true
+      end
+
+      it "should mark the xmppChat metadata as true" do
+        expect(hash).to include "metadata" => include("xmppChat" => true)
+      end
+    end
+
+
+    
     context "when camo is enabled" do
       before do
         AppConfig.privacy.camo.proxy_markdown_images = true
@@ -162,6 +175,7 @@ describe NodeInfoPresenter do
           },
           "metadata"          => {
             "nodeName" => AppConfig.settings.pod_name,
+            "xmppChat" => AppConfig.chat.enabled?,
             "camo"     => {
               "markdown"   => AppConfig.privacy.camo.proxy_markdown_images?,
               "opengraph"  => AppConfig.privacy.camo.proxy_opengraph_thumbnails?,
